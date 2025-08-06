@@ -2,8 +2,6 @@
 
 # -c [arg] for number of counts
 
-
-
 read -p "Enter IP address: " address
 
 option=""
@@ -28,12 +26,10 @@ echo "Argument is $arg"
 fi
 
 if [ -n "$address" ] && [ -n "$arg" ];then
-ping -c "$arg" "$address"
-ping -c "$arg" "$address" 1> ping.log
+ping -c "$arg" "$address" | tee ping.log
 exit 0
 elif [ -n "$address" ];then
-ping -c 30 "$address"
-ping -c 30 "$address" 1> ping.log
+ping -c 30 "$address" |tee ping.log
 exit 0
 else
 echo "Provide Address"
