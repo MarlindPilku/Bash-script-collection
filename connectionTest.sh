@@ -1,20 +1,21 @@
 #!/bin/bash
 
 # -c [arg] for number of counts
-
-read -p "Enter IP address: " address
+# -a [arg] for IP address
 
 option=""
 arg=""
-
-while getopts :c: opt; do
+address=""
+while getopts :a:c: opt; do
 case "$opt" in
+a) address="$OPTARG";;
 c) option="$opt"
 arg="$OPTARG";;
-:) echo "Something"
+:) echo "An argument is required"
 exit 1;;
-?) echo "Unknown option"
-exit 1;
+?) echo "Usage: "
+echo "$? -a [IP Address] -c [Count]"
+exit 1;;
 esac
 done
 
